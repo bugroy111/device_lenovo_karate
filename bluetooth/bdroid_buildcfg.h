@@ -29,4 +29,8 @@
 #define BTIF_HF_WBS_PREFERRED TRUE
 #define BTM_SCO_ENHANCED_SYNC_ENABLED FALSE
 #define BTM_SCO_ENHANCED_SYNC_DISABLED TRUE
+
+/* Increasing SEPs to 12 from 6 to support SHO/MCast i.e. two streams per codec */
+#define AVDT_NUM_SEPS                  12
+
 #endif
