@@ -884,6 +884,10 @@
         <ctl name="Ext Spk Switch" value="On" />
     </path>
 
+    <path name="voice-speaker-protected">
+        <path name="speaker-protected" />
+    </path>
+
     <path name="speaker-mic">
         <path name="adc1" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
