@@ -1,13 +1,13 @@
 # Proprietary files for karate
 
 # Audio ACDB
-etc/acdbdata/msm8937-karate-snd-card/Bluetooth_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/General_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/Global_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/Handset_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/Hdmi_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/Headset_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/Speaker_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/Bluetooth_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/General_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/Global_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/Handset_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/Hdmi_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/Headset_cal.acdb
+vendor/etc/acdbdata/msm8937-karate-snd-card/Speaker_cal.acdb
 
 # Camera eeproms
 vendor/lib/libmmcamera_dw9767_karateof_eeprom.so
@@ -106,7 +106,7 @@ vendor/lib/libchromatix_imx258_karateqt_zsl_preview_dw9767.so
 vendor/lib/libchromatix_imx258_karateqt_zsl_video_dw9767.so
 
 # Display calibration
--etc/qdcm_calib_data_ili7807d_1080p_video_YAS.xml
--etc/qdcm_calib_data_ili7807d_2nd_1080p_video_YAS.xml
--etc/qdcm_calib_data_otm1901a_1080p_video_TianMa_G6.xml
--etc/qdcm_calib_data_otm1901a_1080p_video_TianMa.xml
+-vendor/etc/qdcm_calib_data_ili7807d_1080p_video_YAS.xml
+-vendor/etc/qdcm_calib_data_ili7807d_2nd_1080p_video_YAS.xml
+-vendor/etc/qdcm_calib_data_otm1901a_1080p_video_TianMa_G6.xml
+-vendor/etc/qdcm_calib_data_otm1901a_1080p_video_TianMa.xml
