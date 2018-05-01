@@ -18,7 +18,10 @@ DEVICE_PATH := device/lenovo/karate
 
 include device/lenovo/karate-common/BoardConfigCommon.mk
 
-# Include device-specific product fragments
+# Assert
+TARGET_OTA_ASSERT_DEVICE := K33,karate
+
+# Include device-specific board fragments
 include $(DEVICE_PATH)/board/*.mk
 
 -include vendor/lenovo/karate/BoardConfigVendor.mk

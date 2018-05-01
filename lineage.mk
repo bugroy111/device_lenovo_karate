@@ -23,13 +23,14 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 PRODUCT_NAME := lineage_karate
 BOARD_VENDOR := lenovo
 PRODUCT_DEVICE := karate
-PRODUCT_BRAND := lenovo
+PRODUCT_BRAND := Lenovo
 PRODUCT_MANUFACTURER := LENOVO
-
-TARGET_VENDOR_PRODUCT_NAME := karate
 
 PRODUCT_GMS_CLIENTID_BASE := android-lenovo
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT="Lenovo/karate/K33:7.0/NRD90N/K33_S231_171114_ROW:user/release-keys" \
+    TARGET_DEVICE="K33" \
+    PRODUCT_NAME="karate" \
     PRIVATE_BUILD_DESC="karate-user 7.0 NRD90N K33_S231_171114_ROW release-keys"
+
+BUILD_FINGERPRINT= "Lenovo/karate/K33:7.0/NRD90N/K33_S231_171114_ROW:user/release-keys"
