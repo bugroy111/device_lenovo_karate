@@ -21,6 +21,9 @@ $(call inherit-product, device/lenovo/karate-common/karate.mk)
 # Include device-specific product fragments
 include $(DEVICE_PATH)/product/*.mk
 
+# Properties
+-include $(DEVICE_PATH)/vendor_prop.mk
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(DEVICE_PATH)/overlay
