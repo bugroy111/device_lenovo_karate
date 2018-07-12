@@ -1,13 +1,13 @@
 # Proprietary files for karate
 
 # Audio ACDB
-etc/acdbdata/msm8937-karate-snd-card/Bluetooth_cal.acdb:vendor/acdb/msm8937-karate-snd-card/Bluetooth_cal.acdb 
-etc/acdbdata/msm8937-karate-snd-card/General_cal.acdb:vendor/acdb/msm8937-karate-snd-card/General_cal.acdb 
-etc/acdbdata/msm8937-karate-snd-card/Global_cal.acdb:vendor/acdb/msm8937-karate-snd-card/Global_cal.acdb
-etc/acdbdata/msm8937-karate-snd-card/Handset_cal.acdb:vendor/acdb/msm8937-karate-snd-card/Handset_cal.acdb 
-etc/acdbdata/msm8937-karate-snd-card/Hdmi_cal.acdb:vendor/acdb/msm8937-karate-snd-card/Hdmi_cal.acdb 
-etc/acdbdata/msm8937-karate-snd-card/Headset_cal.acdb:vendor/acdb/msm8937-karate-snd-card/Headset_cal.acdb 
-etc/acdbdata/msm8937-karate-snd-card/Speaker_cal.acdb:vendor/acdb/msm8937-karate-snd-card/Speaker_cal.acdb
+etc/acdbdata/msm8937-karate-snd-card/Bluetooth_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/Bluetooth_cal.acdb 
+etc/acdbdata/msm8937-karate-snd-card/General_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/General_cal.acdb 
+etc/acdbdata/msm8937-karate-snd-card/Global_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/Global_cal.acdb
+etc/acdbdata/msm8937-karate-snd-card/Handset_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/Handset_cal.acdb 
+etc/acdbdata/msm8937-karate-snd-card/Hdmi_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/Hdmi_cal.acdb 
+etc/acdbdata/msm8937-karate-snd-card/Headset_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/Headset_cal.acdb 
+etc/acdbdata/msm8937-karate-snd-card/Speaker_cal.acdb:vendor/etc/acdbdata/msm8937-karate-snd-card/Speaker_cal.acdb
 
 # Camera eeproms
 vendor/lib/libmmcamera_dw9767_karateof_eeprom.so
