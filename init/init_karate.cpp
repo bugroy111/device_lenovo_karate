@@ -59,7 +59,7 @@ void check_boardinfo()
 	char board_id[15];
 	FILE *lenovo_id;
 	lenovo_id = fopen ("/sys/devices/soc0/platform_lenovo_hardware_type", "r");
-	fscanf(lenovo_id, "%s" , &board_id);
+	fscanf(lenovo_id, "%s" , board_id);
 	fclose (lenovo_id);
 
 	if (strcmp(board_id, "S82937EA1") == 0) {
