@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +21,13 @@ include device/lenovo/karate-common/BoardConfigCommon.mk
 # Assert
 TARGET_OTA_ASSERT_DEVICE := K33,karate
 
-# Include device-specific board fragments
-include $(DEVICE_PATH)/board/*.mk
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
+# Init
+TARGET_LIBINIT_MSM8937_DEFINES_FILE := $(DEVICE_PATH)/init/init_karate.cpp
+
+# Kernel
+TARGET_KERNEL_CONFIG := karate_defconfig
 
 -include vendor/lenovo/karate/BoardConfigVendor.mk
