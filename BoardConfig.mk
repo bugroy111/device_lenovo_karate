@@ -30,4 +30,7 @@ TARGET_LIBINIT_MSM8937_DEFINES_FILE := $(DEVICE_PATH)/init/init_karate.cpp
 # Kernel
 TARGET_KERNEL_CONFIG := karate_defconfig
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
+
 -include vendor/lenovo/karate/BoardConfigVendor.mk
