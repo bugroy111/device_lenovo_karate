@@ -1,5 +1,7 @@
 /*
    Copyright (c) 2016, The CyanogenMod Project
+   Copyright (c) 2018 The LineageOS Project
+
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -12,6 +14,7 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
+
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -31,16 +34,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
+
+#include <sys/sysinfo.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include "vendor_init.h"
+#include <android-base/properties.h>
+
 #include "property_service.h"
-#include "log.h"
+#include "util.h"
+#include "vendor_init.h"
 
-#include "init_msm8937.h"
-
+using android::base::GetProperty;
 using android::init::property_set;
+
+char const *heapstartsize;
+char const *heapgrowthlimit;
+char const *heapsize;
+char const *heapminfree;
+char const *heapmaxfree;
 
 void property_override(char const prop[], char const value[])
 {
@@ -62,61 +74,93 @@ void property_override_dual(char const system_prop[], char const vendor_prop[],
 
 void check_boardinfo()
 {
-	std::string lenovo_id;
-	std::ifstream board_id("/sys/devices/soc0/platform_lenovo_hardware_type");
+    std::string lenovo_id;
+    std::ifstream board_id("/sys/devices/soc0/platform_lenovo_hardware_type");
 
-	while (std::getline(board_id, lenovo_id)) {
-		if (lenovo_id.find("S82937EA1") != std::string::npos) {
-			property_override("ro.build.product", "K33a37");
-			property_override("ro.product.board", "S82937EA1");
-			property_override_dual("ro.product.device", "ro.product.vendor.device", "K33a37");
-			property_override_dual("ro.product.model", "ro.product.vendor.model", "Lenovo K33b37");
-			property_set("ro.telephony.default_network", "9");
-			break;
-		} else if (lenovo_id.find("S82938AA1") != std::string::npos) {
-			property_override("ro.build.product", "K33a42");
-			property_override("ro.product.board", "S82938AA1");
-			property_override_dual("ro.product.device", "ro.product.vendor.device", "K33a42");
-			property_override_dual("ro.product.model", "ro.product.vendor.model", "Lenovo K33a42");
-			property_set("persist.radio.multisim.config", "dsds");
-			property_set("ro.telephony.default_network", "9,9");
-			property_set("ro.power_profile.override", "power_profile_k6p");
-			break;
-		} else if (lenovo_id.find("S82938BA1") != std::string::npos) {
-			property_override("ro.build.product", "K33a42");
-			property_override("ro.product.board", "S82938BA1");
-			property_override_dual("ro.product.device", "ro.product.vendor.device", "K33a42");
-			property_override_dual("ro.product.model", "ro.product.vendor.model", "Lenovo K33a42");
-			property_set("persist.radio.multisim.config", "dsds");
-			property_set("ro.telephony.default_network", "9,9");
-			property_set("ro.power_profile.override", "power_profile_k6p");
-			break;
-		} else if (lenovo_id.find("S82937AA1") != std::string::npos) {
-			property_override("ro.build.product", "K33a48");
-			property_override("ro.product.board", "S82937AA1");
-			property_override_dual("ro.product.device", "ro.product.vendor.device", "K33a48");
-			property_override_dual("ro.product.model", "ro.product.vendor.model", "Lenovo K33a48");
-			property_set("persist.radio.multisim.config", "dsds");
-			property_set("ro.telephony.default_network", "9,9");
-			break;
-		} else if (lenovo_id.find("S82937CA1") != std::string::npos) {
-			property_override("ro.build.product", "K33a48");
-			property_override("ro.product.board", "S82937CA1");
-			property_override_dual("ro.product.device", "ro.product.vendor.device", "K33a48");
-			property_override_dual("ro.product.model", "ro.product.vendor.model", "Lenovo K33a48");
-			property_set("ro.telephony.default_network", "9");
-		} else {
-			property_override("ro.build.product", "K33b36");
-			property_override("ro.product.board", "S82937DA1");
-			property_override_dual("ro.product.device", "ro.product.vendor.device", "K33b36");
-			property_override_dual("ro.product.model", "ro.product.vendor.model", "Lenovo K33b36");
-			property_set("persist.radio.multisim.config", "dsds");
-			property_set("ro.telephony.default_network", "9,9");
-		}
-	}
+    while (std::getline(board_id, lenovo_id)) {
+	if (lenovo_id.find("S82937EA1") != std::string::npos) {
+		property_override("ro.build.product", "K33a37");
+		property_override("ro.product.board", "S82937EA1");
+		property_override_dual("ro.product.vendor.device", "ro.vendor.product.device", "K33a37");
+		property_override_dual("ro.product.vendor.model", "ro.vendor.product.model", "Lenovo K33b37");
+		property_set("ro.telephony.default_network", "9");
+		break;
+	} else if (lenovo_id.find("S82938AA1") != std::string::npos) {
+		property_override("ro.build.product", "K33a42");
+		property_override("ro.product.board", "S82938AA1");
+		property_override_dual("ro.product.vendor.device", "ro.vendor.product.device", "K33a42");
+		property_override_dual("ro.product.vendor.model", "ro.vendor.product.model", "Lenovo K33a42");
+		property_set("persist.radio.multisim.config", "dsds");
+		property_set("ro.telephony.default_network", "9,9");
+		property_set("ro.power_profile.override", "power_profile_k6p");
+		break;
+	} else if (lenovo_id.find("S82938BA1") != std::string::npos) {
+		property_override("ro.build.product", "K33a42");
+		property_override("ro.product.board", "S82938BA1");
+		property_override_dual("ro.product.vendor.device", "ro.vendor.product.device", "K33a42");
+		property_override_dual("ro.product.vendor.model", "ro.vendor.product.model", "Lenovo K33a42");
+		property_set("persist.radio.multisim.config", "dsds");
+		property_set("ro.telephony.default_network", "9,9");
+		property_set("ro.power_profile.override", "power_profile_k6p");
+		break;
+	} else if (lenovo_id.find("S82937AA1") != std::string::npos) {
+		property_override("ro.build.product", "K33a48");
+		property_override("ro.product.board", "S82937AA1");
+		property_override_dual("ro.product.vendor.device", "ro.vendor.product.device", "K33a48");
+		property_override_dual("ro.product.vendor.model", "ro.vendor.product.model", "Lenovo K33a48");
+		property_set("persist.radio.multisim.config", "dsds");
+		property_set("ro.telephony.default_network", "9,9");
+		break;
+	} else if (lenovo_id.find("S82937CA1") != std::string::npos) {
+		property_override("ro.build.product", "K33a48");
+		property_override("ro.product.board", "S82937CA1");
+		property_override_dual("ro.product.vendor.device", "ro.vendor.product.device", "K33a48");
+		property_override_dual("ro.product.vendor.model", "ro.vendor.product.model", "Lenovo K33a48");
+		property_set("ro.telephony.default_network", "9");
+	} else {
+		property_override("ro.build.product", "K33b36");
+		property_override("ro.product.board", "S82937DA1");
+		property_override_dual("ro.product.vendor.device", "ro.vendor.product.device", "K33b36");
+		property_override_dual("ro.product.vendor.model", "ro.vendor.product.model", "Lenovo K33b36");
+		property_set("persist.radio.multisim.config", "dsds");
+		property_set("ro.telephony.default_network", "9,9");
+	       }
+        }
 }
 
-void init_target_properties()
+void check_device()
+{
+   struct sysinfo sys;
+
+   sysinfo(&sys);
+
+   if (sys.totalram > 3072ull * 1024 * 1024) {
+        heapgrowthlimit = "256m";
+        heapsize = "768m";
+        heapminfree = "4m";
+        heapmaxfree = "16m";
+    } else if (sys.totalram > 2048ull * 1024 * 1024) {
+        heapgrowthlimit = "256m";
+        heapsize = "768m";
+        heapminfree = "512k";
+        heapmaxfree = "8m";
+    } else {
+        heapgrowthlimit = "192m";
+        heapsize = "512m";
+        heapminfree = "2m";
+	heapmaxfree = "8m";
+    }
+}
+
+void vendor_load_properties()
 {
     check_boardinfo();
+    check_device();
+
+    property_set("dalvik.vm.heapstartsize", "16m");
+    property_set("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
+    property_set("dalvik.vm.heapsize", heapsize);
+    property_set("dalvik.vm.heaptargetutilization", "0.75");
+    property_set("dalvik.vm.heapminfree", heapminfree);
+    property_set("dalvik.vm.heapmaxfree", heapmaxfree);
 }
