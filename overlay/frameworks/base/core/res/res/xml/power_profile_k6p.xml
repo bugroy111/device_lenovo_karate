@@ -18,7 +18,7 @@
     <array name="radio.on">
         <value>7.11</value>
     </array>
-    <array name="cpu.speeds">
+    <array name="cpu.core_speeds">
         <value>768000</value>
         <value>902400</value>
         <value>960000</value>
@@ -29,7 +29,7 @@
         <value>1344000</value>
         <value>1401000</value>
     </array>
-    <array name="cpu.active">
+    <array name="cpu.core_power">
         <value>64</value>
         <value>72</value>
         <value>87</value>
