@@ -38,6 +38,10 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/camera/imx258_karateqt_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx258_karateqt_chromatix.xml \
     $(DEVICE_PATH)/configs/camera/lenovo_karate_camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/lenovo_karate_camera.xml
 
+# Init
+PRODUCT_PACKAGES += \
+    init.device.sh
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/keylayout/msm8937-karate-snd-card_Button_Jack.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/msm8937-karate-snd-card_Button_Jack.kl
