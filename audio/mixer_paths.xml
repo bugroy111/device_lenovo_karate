@@ -1007,8 +1007,8 @@
     </path>
 
     <path name="speaker-and-headphones">
-        <ctl name="RX1 Digital Volume" value="80" />
-        <ctl name="RX2 Digital Volume" value="80" />
+        <ctl name="RX1 Digital Volume" value="94" />
+        <ctl name="RX2 Digital Volume" value="94" />
         <path name="speaker" />
         <path name="headphones" />
     </path>
