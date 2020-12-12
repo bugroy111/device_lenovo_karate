@@ -17,10 +17,13 @@
 $(call inherit-product, device/lenovo/karate/full_karate.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_GAPPS_ARCH := arm64
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := lineage_karate
+PRODUCT_NAME := aosp_karate
 BOARD_VENDOR := lenovo
 PRODUCT_DEVICE := karate
 PRODUCT_BRAND := Lenovo
