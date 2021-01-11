@@ -77,24 +77,12 @@ void check_device()
    sysinfo(&sys);
 
    if (sys.totalram > 3072ull * 1024 * 1024) {
-        heapgrowthlimit = "256m";
-        heapsize = "768m";
-        heapminfree = "4m";
-        heapmaxfree = "16m";
         model = "Lenovo K6 Power";
         property_override("ro.power_profile.override", "power_profile_k6p");
     } else if (sys.totalram > 2048ull * 1024 * 1024) {
-        heapgrowthlimit = "256m";
-        heapsize = "768m";
-        heapminfree = "512k";
-        heapmaxfree = "8m";
         model = "Lenovo K6 Power";
         property_override("ro.power_profile.override", "power_profile_k6p");
     } else {
-        heapgrowthlimit = "192m";
-        heapsize = "512m";
-        heapminfree = "2m";
-        heapmaxfree = "8m";
         model = "Lenovo K6";
     }
 }
@@ -102,13 +90,5 @@ void check_device()
 void vendor_load_properties()
 {
     check_device();
-
-    property_override("dalvik.vm.heapstartsize", "16m");
-    property_override("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
-    property_override("dalvik.vm.heapsize", heapsize);
-    property_override("dalvik.vm.heaptargetutilization", "0.75");
-    property_override("dalvik.vm.heapminfree", heapminfree);
-    property_override("dalvik.vm.heapmaxfree", heapmaxfree);
-
     property_override_dual("ro.product.model", "ro.vendor.product.model", model);
 }
