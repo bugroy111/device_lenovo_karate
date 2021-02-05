@@ -14,4 +14,4 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_karate.mk \
-    $(LOCAL_DIR)/lineage_karate.mk
+    $(LOCAL_DIR)/descendant_karate.mk
